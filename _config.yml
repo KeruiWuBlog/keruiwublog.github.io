@@ -1,6 +1,11 @@
 # Extensions | 主题
 theme: YoruKumo
 
+# Static site output directory for GitHub Pages.
+public_dir: docs
+include:
+  - .nojekyll
+
 # 网站 | website
 favicon: /images/favicon.ico
 logo:

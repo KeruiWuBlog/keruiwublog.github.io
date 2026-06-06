@@ -1,14 +1,14 @@
-# The compiled static site is built into public/.
+# The compiled static site is built into docs/.
 
 # Ignore everything at the repo root...
 # /*
 
 # ...except the compiled site and this ignore file.
-# !/public/
+# !/docs/
 # !/.gitignore
 
 # Keep OS junk out of the published folder.
-public/**/.DS_Store
+docs/**/.DS_Store
 
 node_modules/
 cloudflare-worker/node_modules
