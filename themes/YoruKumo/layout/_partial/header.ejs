@@ -1,0 +1,41 @@
+<div id="header-container" class="header-top">
+  <div class="logo">
+    <a href="<%- url_for('/') %>">
+      <% if (theme.logo) { %>
+      <img src="<%- url_for(theme.logo) %>" alt="<%= theme.title %>" />
+      <% } else { %> <%= theme.title %> <% } %>
+    </a>
+  </div>
+
+  <%
+    var menuI18n = {
+      'en': { Home: 'Home', Posts: 'Posts', Stats: 'Stats', About: 'About', Category: 'Category', Archive: 'Archive', Tag: 'Tag' },
+      'zh-cn': { Home: '首页', Posts: '文章', Stats: '统计', About: '关于', Category: '分类', Archive: '归档', Tag: '标签' }
+    };
+  %>
+  <nav class="nav-menu">
+    <ul class="nav-list">
+      <% if (theme.menu) { %> <% for (let i in theme.menu) { %>
+      <li>
+        <a
+          href="<%- url_for(theme.menu[i]) %>"
+          class="localized-menu"
+          data-menu-en="<%= menuI18n['en'][i] || i %>"
+          data-menu-zh-cn="<%= menuI18n['zh-cn'][i] || i %>"><%= menuI18n['en'][i] || i %></a>
+      </li>
+      <% } %> <% } %>
+    </ul>
+  </nav>
+
+  <div class="header-actions">
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Toggle color theme">
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
+    </button>
+
+    <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
+      <span class="line line-1"></span>
+      <span class="line line-2"></span>
+      <span class="line line-3"></span>
+    </button>
+  </div>
+</div>

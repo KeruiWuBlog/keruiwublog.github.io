@@ -1,0 +1,11 @@
+<!-- 头部 -->
+<%- partial('_partial/header',{}, {cache: true}) %>
+
+<!-- 页面内容 -->
+<div class="page-content">
+  <%- partial('_partial/post-list-language-switcher') %>
+  <%- partial('_partial/post-list-tag-filter', { posts: page.posts }) %>
+  <main class="post-list timeline-wrapper">
+    <%- partial('_partial/post-list-timeline', { posts: page.posts }) %>
+  </main>
+</div>

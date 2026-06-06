@@ -1,0 +1,124 @@
+<%
+  var switcher = theme.language_switcher || {};
+  var defaultLang = String(switcher.default || 'en').toLowerCase();
+  var languageOrder = (switcher.order || [defaultLang]).map(function(code) {
+    return String(code).toLowerCase();
+  });
+  var fallbackTitle = __('post.untitled');
+
+  function getLanguageCode(post) {
+    return String(post.lang || post.language || defaultLang).toLowerCase();
+  }
+
+  function getLanguageRank(post) {
+    var code = getLanguageCode(post);
+    var exactIndex = languageOrder.indexOf(code);
+    if (exactIndex !== -1) return exactIndex;
+    var baseIndex = languageOrder.indexOf(code.split('-')[0]);
+    return baseIndex !== -1 ? baseIndex : languageOrder.length + 1;
+  }
+
+  function choosePrimary(versions) {
+    var sorted = versions.slice().sort(function(a, b) {
+      var rankDiff = getLanguageRank(a) - getLanguageRank(b);
+      if (rankDiff !== 0) return rankDiff;
+      return date(b.date, 'YYYYMMDDHHmmss') - date(a.date, 'YYYYMMDDHHmmss');
+    });
+    return sorted[0];
+  }
+
+  function collectPostGroups(posts) {
+    var groups = {};
+    var order = [];
+
+    posts.each(function(post) {
+      var key = post.translation_key || ('single:' + post.path);
+      if (!groups[key]) {
+        groups[key] = [];
+        order.push(key);
+      }
+      groups[key].push(post);
+    });
+
+    return order.map(function(key) {
+      var versions = groups[key];
+      return {
+        key: key,
+        primary: choosePrimary(versions),
+        versions: versions
+      };
+    });
+  }
+
+  var postGroups = collectPostGroups(posts);
+  var lastYear;
+%>
+
+<% postGroups.forEach(function(group) {
+  var post = group.primary;
+  var year = date(post.date, 'YYYY');
+  var groupTagNames = [];
+  group.versions.forEach(function(version) {
+    if (!version.tags) return;
+    version.tags.each(function(tag) {
+      if (groupTagNames.indexOf(tag.name) === -1) groupTagNames.push(tag.name);
+    });
+  });
+%>
+
+<% if (lastYear !== year) { %>
+<div class="timeline-year-node">
+  <div class="timeline-date"></div>
+  <div class="timeline-axis">
+    <div class="timeline-year-dot"></div>
+  </div>
+  <div class="timeline-content">
+    <div class="timeline-year-text"><%= year %></div>
+  </div>
+</div>
+<% } %>
+
+<div class="timeline-item" data-tags="<%= groupTagNames.join('||') %>">
+  <div class="timeline-date">
+    <span class="timeline-date-md"><%= date(post.date, 'MM-DD') %></span>
+    <span class="timeline-date-year"><%= date(post.date, 'YYYY') %></span>
+  </div>
+  <div class="timeline-axis">
+    <div class="timeline-dot"></div>
+  </div>
+  <div class="timeline-content">
+    <a
+      class="localized-post-link"
+      href="<%- url_for(post.path) %>"
+      <% group.versions.forEach(function(version) {
+        var code = getLanguageCode(version);
+      %>
+      data-href-<%- code %>="<%- url_for(version.path) %>"
+      data-title-<%- code %>="<%= version.title || fallbackTitle %>"
+      data-excerpt-<%- code %>="<%= version.excerpt || '' %>"
+      <% }); %>>
+      <div class="postItem">
+        <p class="postItem-title localized-post-title" title="<%= post.title || fallbackTitle %>">
+          <%= post.title || fallbackTitle %>
+        </p>
+        <p class="postItem-date"><%= date(post.date, 'YYYY-MM-DD') %></p>
+        <% if (theme.counter && theme.counter.enable && theme.counter.post_views) { %>
+        <p class="postItem-views" data-counter-key="<%= group.key %>" style="display:none">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          <span class="postItem-views-value">···</span>
+          <%= __('post.views') %>
+        </p>
+        <% } %>
+        <p class="postItem-tags">
+          <% post.tags.each(function(tag){ %>
+          <span class="postItem-tag"><%= tag.name %></span>
+          <% }) %>
+        </p>
+        <p class="postItem-excerpt localized-post-excerpt"><%= post.excerpt || '' %></p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<% lastYear = year; %>
+<% }); %>

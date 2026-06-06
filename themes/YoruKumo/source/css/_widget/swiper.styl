@@ -1,0 +1,29 @@
+#swiper-container
+  width 100%
+  height 11rem
+  overflow hidden
+  position relative
+
+
+#swiper-container img
+    width 100%
+    height 100%
+    object-fit cover
+    object-position center 44%
+
+
+#swiper-container .shadow
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-color: var(--shadow-color)
+
+@media (min-width: 769px)
+  #swiper-container
+    height clamp(18rem, 24vw, 26rem)
+
+@media (min-width: 1440px)
+  #swiper-container
+    height clamp(22rem, 23vw, 29rem)

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <%- partial('_partial/head') %>
+  <body class="<%- is_home() ? 'is-home' : '' %>">
+    <%- partial('_widget/swiper') %>
+    <div class="body-page-view"><%- body %></div>
+    <%- partial('_partial/footer') %>
+    <%- partial('_widget/to-top') %>
+    <% if (!theme.tcs || theme.tcs.math !== false) { %>
+    <%- js('js/math.js') %>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+      onload="window.renderYoruKumoMath && window.renderYoruKumoMath();"></script>
+    <% } %>
+    <%- js(['js/animation.js', 'js/highlight.js', 'js/image-viewer.js', 'js/language-switcher.js', 'js/tag-filter.js', 'js/toc.js']) %>
+    <% if (theme.counter && theme.counter.enable) { %>
+    <%- js('js/counter.js') %>
+    <% } %>
+  </body>
+</html>

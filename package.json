@@ -1,0 +1,34 @@
+{
+  "name": "keruiwublog",
+  "version": "1.0.0",
+  "description": "Kerui Wu's personal blog, built with Hexo and the YoruKumo theme.",
+  "scripts": {
+    "dev": "node node_modules/hexo-cli/bin/hexo server --draft --port 4000 --ip 127.0.0.1",
+    "build": "node node_modules/hexo-cli/bin/hexo clean && node node_modules/hexo-cli/bin/hexo generate",
+    "clean": "node node_modules/hexo-cli/bin/hexo clean",
+    "deploy": "npm run build && git add -A && git commit -m \"Deploy site\" && git push"
+  },
+  "hexo": {
+    "version": "7.3.0"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "YoruKumo"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "hexo": "^7.3.0",
+    "hexo-cli": "^4.3.2",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-index": "^4.0.0",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.1",
+    "hexo-renderer-stylus": "^2.1.0",
+    "hexo-server": "^3.0.0",
+    "image-size": "^1.2.0",
+    "katex": "^0.16.22"
+  }
+}

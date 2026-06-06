@@ -1,0 +1,404 @@
+.post-page
+  .post-content
+    .tcs-box
+      --tcs-accent #2563eb
+      --tcs-bg rgba(37, 99, 235, 0.055)
+      --tcs-border rgba(37, 99, 235, 0.28)
+      position relative
+      margin 1.6rem 0
+      padding 1.1rem 1.2rem 1.05rem
+      border 1px solid var(--tcs-border)
+      border-left 4px solid var(--tcs-accent)
+      border-radius 8px
+      background linear-gradient(135deg, var(--tcs-bg), var(--secondary-color))
+      box-shadow 0 10px 26px var(--shadow-color2)
+      overflow hidden
+
+      &::before
+        content ''
+        position absolute
+        inset 0 auto 0 0
+        width 4px
+        background var(--tcs-accent)
+
+      .tcs-box-header
+        display flex
+        align-items baseline
+        flex-wrap wrap
+        gap 0.45rem
+        margin-bottom 0.65rem
+        line-height 1.35
+
+      .tcs-box-label
+        color var(--tcs-accent)
+        font-weight 700
+        letter-spacing 0
+
+      .tcs-box-title
+        color var(--text-color)
+        font-weight 600
+
+        &::before
+          content '·'
+          margin-right 0.45rem
+          color var(--secondary-text-color)
+
+      .tcs-box-content
+        color var(--text-color)
+
+        > :first-child
+          margin-top 0
+
+        > :last-child
+          margin-bottom 0
+
+        p:last-child
+          margin-bottom 0
+
+      &.tcs-theorem
+        --tcs-accent #1d4ed8
+        --tcs-bg rgba(29, 78, 216, 0.07)
+        --tcs-border rgba(29, 78, 216, 0.28)
+
+      &.tcs-lemma
+        --tcs-accent #0891b2
+        --tcs-bg rgba(8, 145, 178, 0.07)
+        --tcs-border rgba(8, 145, 178, 0.28)
+
+      &.tcs-proposition
+        --tcs-accent #7c3aed
+        --tcs-bg rgba(124, 58, 237, 0.07)
+        --tcs-border rgba(124, 58, 237, 0.28)
+
+      &.tcs-corollary
+        --tcs-accent #059669
+        --tcs-bg rgba(5, 150, 105, 0.07)
+        --tcs-border rgba(5, 150, 105, 0.28)
+
+      &.tcs-definition
+        --tcs-accent #c2410c
+        --tcs-bg rgba(194, 65, 12, 0.075)
+        --tcs-border rgba(194, 65, 12, 0.28)
+
+      &.tcs-assumption
+        --tcs-accent #9333ea
+        --tcs-bg rgba(147, 51, 234, 0.07)
+        --tcs-border rgba(147, 51, 234, 0.28)
+
+      &.tcs-remark
+        --tcs-accent #64748b
+        --tcs-bg rgba(100, 116, 139, 0.08)
+        --tcs-border rgba(100, 116, 139, 0.28)
+
+      &.tcs-example
+        --tcs-accent #ca8a04
+        --tcs-bg rgba(202, 138, 4, 0.075)
+        --tcs-border rgba(202, 138, 4, 0.28)
+
+      &.tcs-proof
+        --tcs-accent #334155
+        --tcs-bg rgba(51, 65, 85, 0.05)
+        --tcs-border rgba(51, 65, 85, 0.22)
+        border-left-width 3px
+        background var(--secondary-color)
+
+        .tcs-box-label
+          font-style italic
+
+        .tcs-qed
+          float right
+          margin-left 0.75rem
+          color var(--secondary-text-color)
+          font-size 1.05em
+
+    .katex-display
+      overflow-x auto
+      overflow-y hidden
+      padding 0.15rem 0.1rem
+      margin 0.85rem 0
+
+    .katex
+      font-size 1.04em
+
+    .tcs-math-display
+      margin 0.85rem 0
+      overflow-x auto
+      overflow-y hidden
+      text-align center
+
+      .katex-display
+        margin 0
+        padding 0.1rem 0
+
+    .tcs-math-inline
+      white-space nowrap
+
+    .tcs-citation-group
+      white-space normal
+
+    .tcs-citation
+      color #2563eb
+      font-weight 600
+      text-decoration none
+      border-bottom 1px solid rgba(37, 99, 235, 0.28)
+      transition color 0.2s ease, border-color 0.2s ease
+
+      &:hover
+        color var(--text-color)
+        border-color var(--text-color)
+
+      &.tcs-citation-missing
+        color #dc2626
+        border-bottom 0
+        font-weight 700
+
+    .tcs-citation-year
+      color var(--secondary-text-color)
+
+    .tcs-ref
+      color #d6249f
+      font-weight 600
+      text-decoration none
+      border-bottom 1px solid rgba(214, 36, 159, 0.28)
+      transition color 0.2s ease, border-color 0.2s ease
+
+      &:hover
+        color var(--text-color)
+        border-color var(--text-color)
+
+      &.tcs-ref-missing
+        color #dc2626
+        border-bottom 0
+        font-weight 700
+
+    .tcs-paper-card
+      margin 1.5rem 0
+      padding 1rem 1.15rem
+      border 1px solid var(--shadow-color1)
+      border-left 4px solid #2563eb
+      border-radius 8px
+      background var(--secondary-color)
+      box-shadow 0 8px 20px var(--shadow-color2)
+
+      &.tcs-paper-missing
+        border-left-color #dc2626
+        color #dc2626
+
+      .tcs-paper-card-label
+        display inline-flex
+        align-items center
+        margin-bottom 0.55rem
+        color #2563eb
+        font-size 0.78rem
+        font-weight 700
+        letter-spacing 0.06em
+        text-transform uppercase
+
+      .tcs-paper-card-title
+        color var(--text-color)
+        font-size 1.04rem
+        font-weight 700
+        line-height 1.45
+
+      .tcs-paper-card-authors
+        margin-top 0.35rem
+        color var(--text-color)
+        line-height 1.55
+
+      .tcs-paper-card-venue,
+      .tcs-paper-card-note
+        margin-top 0.25rem
+        color var(--secondary-text-color)
+        font-size 0.94rem
+        line-height 1.5
+
+    .tcs-paper-links
+      display flex
+      flex-wrap wrap
+      gap 0.5rem
+      margin-top 0.7rem
+
+      a
+        display inline-flex
+        align-items center
+        min-height 1.85rem
+        padding 0.22rem 0.65rem
+        border 1px solid var(--shadow-color1)
+        border-radius 999px
+        color var(--text-color)
+        background var(--main-color)
+        font-size 0.86rem
+        font-weight 600
+        transition transform 0.2s ease, border-color 0.2s ease, color 0.2s ease
+
+        &:hover
+          transform translateY(-1px)
+          border-color #2563eb
+          color #2563eb
+
+    .tcs-algorithm
+      margin 1.65rem 0
+      border 1px solid var(--shadow-color1)
+      border-radius 8px
+      background var(--secondary-color)
+      box-shadow 0 10px 24px var(--shadow-color2)
+      overflow hidden
+
+    .tcs-algorithm-caption
+      display flex
+      align-items baseline
+      flex-wrap wrap
+      gap 0.55rem
+      padding 0.75rem 1rem
+      border-bottom 1px solid var(--shadow-color1)
+      background var(--main-color)
+      line-height 1.35
+
+    .tcs-algorithm-label
+      color #2563eb
+      font-weight 800
+
+    .tcs-algorithm-title
+      color var(--text-color)
+      font-weight 650
+
+      &::before
+        content '·'
+        margin-right 0.55rem
+        color var(--secondary-text-color)
+        font-weight 500
+
+    .tcs-algorithm-lines
+      margin 0
+      padding 0.75rem 0
+      list-style none
+      counter-reset algorithm-line
+      overflow-x auto
+      font-family Consolas, Monaco, Fira Code, monospace
+      font-size 0.92rem
+      line-height 1.65
+
+    .tcs-algorithm-line
+      counter-increment algorithm-line
+      display grid
+      grid-template-columns 3.2rem minmax(max-content, 1fr)
+      gap 0.7rem
+      min-width max-content
+      padding 0.08rem 1rem 0.08rem 0
+      color var(--text-color)
+
+      &:hover
+        background rgba(37, 99, 235, 0.08)
+
+    .tcs-algorithm-number
+      padding-right 0.15rem
+      color var(--secondary-text-color)
+      text-align right
+      user-select none
+
+      &::before
+        content counter(algorithm-line)
+
+    .tcs-algorithm-code
+      padding-left calc(var(--indent, 0) * 1.35rem)
+      white-space nowrap
+
+    .tcs-algorithm-keyword
+      color #2563eb
+      font-weight 800
+
+    .tcs-algorithm-comment
+      color var(--secondary-text-color)
+      font-style italic
+
+    .tcs-algorithm-meta
+      color var(--secondary-text-color)
+
+    .tcs-references
+      margin-top 2.4rem
+      padding-top 1.2rem
+      border-top 1px solid var(--shadow-color1)
+
+      h2
+        margin 0 0 1rem
+        font-size 1.35rem
+
+      .tcs-reference-list
+        margin 0
+        padding-left 0
+        list-style none
+
+      .tcs-reference-item
+        display grid
+        grid-template-columns minmax(3.6rem, auto) 1fr
+        gap 0.75rem
+        margin-bottom 1rem
+        padding-left 0
+        line-height 1.65
+
+        &:target
+          background rgba(37, 99, 235, 0.08)
+          border-radius 6px
+
+      .tcs-ref-label
+        color #2563eb
+        font-weight 700
+        white-space nowrap
+
+      .tcs-ref-body
+        min-width 0
+
+      .tcs-ref-authors
+        font-weight 600
+
+      .tcs-ref-title
+        color var(--text-color)
+
+      .tcs-ref-venue,
+      .tcs-ref-note,
+      .tcs-ref-year
+        color var(--secondary-text-color)
+
+@media (max-width: 768px)
+  .post-page
+    .post-content
+      .tcs-box
+        margin 1.2rem 0
+        padding 0.95rem 1rem
+        border-radius 6px
+
+        .tcs-box-header
+          gap 0.35rem
+
+      .katex
+        font-size 1em
+
+      .tcs-paper-card
+        padding 0.9rem 1rem
+
+      .tcs-algorithm
+        margin 1.25rem 0
+
+      .tcs-algorithm-caption
+        padding 0.65rem 0.8rem
+
+      .tcs-algorithm-lines
+        font-size 0.84rem
+
+      .tcs-algorithm-line
+        grid-template-columns 2.7rem minmax(max-content, 1fr)
+        gap 0.55rem
+        padding-right 0.8rem
+
+      .tcs-algorithm-code
+        padding-left calc(var(--indent, 0) * 1rem)
+
+      .tcs-references
+        margin-top 1.8rem
+
+        h2
+          font-size 1.2rem
+
+        .tcs-reference-item
+          grid-template-columns 1fr
+          gap 0.15rem

@@ -1,0 +1,13 @@
+{
+  "name": "blog-counter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-hosted page-view counter (Cloudflare Worker + KV) for the blog.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

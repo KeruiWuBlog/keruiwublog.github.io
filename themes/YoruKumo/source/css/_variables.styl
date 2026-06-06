@@ -1,0 +1,35 @@
+set-light-theme()
+  --main-color #f8f8f8
+  --secondary-color #ffffff
+  --text-color #171717
+  --secondary-text-color #6f6f6f
+  --shadow-color #FFFFFF33
+  --shadow-color1 #0000001a
+  --shadow-color2 #0000000d
+  --header-bg rgba(255, 255, 255, 0.75)
+  --header-bg-transparent rgba(255, 255, 255, 0)
+  --mobile-menu-bg rgba(255, 255, 255, 0.92)
+
+set-dark-theme()
+  --main-color #18181b
+  --secondary-color #09090b
+  --text-color #ededed
+  --secondary-text-color #a0a0a0
+  --shadow-color #00000033
+  --shadow-color1 #ffffff1a
+  --shadow-color2 #ffffff0d
+  --header-bg rgba(9, 9, 11, 0.75)
+  --header-bg-transparent rgba(9, 9, 11, 0)
+  --mobile-menu-bg rgba(9, 9, 11, 0.95)
+
+:root
+  color-scheme light
+  set-light-theme()
+
+html[data-theme='light']
+  color-scheme light
+  set-light-theme()
+
+html[data-theme='dark']
+  color-scheme dark
+  set-dark-theme()

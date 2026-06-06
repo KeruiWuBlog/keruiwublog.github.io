@@ -1,0 +1,76 @@
+<%
+  // Collect tags across translation groups so bilingual versions of the same
+  // article are only counted once (mirrors the timeline grouping logic).
+  var groups = {};
+  var groupOrder = [];
+
+  posts.each(function(post) {
+    var key = post.translation_key || ('single:' + post.path);
+    if (!groups[key]) {
+      groups[key] = [];
+      groupOrder.push(key);
+    }
+    groups[key].push(post);
+  });
+
+  var tagCounts = {};
+  groupOrder.forEach(function(key) {
+    var seen = {};
+    groups[key].forEach(function(post) {
+      if (!post.tags) return;
+      post.tags.each(function(tag) {
+        if (seen[tag.name]) return;
+        seen[tag.name] = true;
+        tagCounts[tag.name] = (tagCounts[tag.name] || 0) + 1;
+      });
+    });
+  });
+
+  var tagList = Object.keys(tagCounts).map(function(name) {
+    return { name: name, count: tagCounts[name] };
+  });
+  tagList.sort(function(a, b) {
+    if (b.count !== a.count) return b.count - a.count;
+    return a.name < b.name ? -1 : (a.name > b.name ? 1 : 0);
+  });
+
+  var filterLabel = __('filter.label');
+  var filterAll = __('filter.all');
+%>
+
+<% if (tagList.length) { %>
+<div class="tag-filter" data-tag-filter>
+  <button
+    class="tag-filter-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="tag-filter-panel"
+    data-tag-filter-toggle>
+    <span class="tag-filter-toggle-label"><%= filterLabel %></span>
+    <span class="tag-filter-toggle-current" data-tag-filter-current><%= filterAll %></span>
+    <svg class="tag-filter-toggle-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="tag-filter-panel" id="tag-filter-panel">
+    <button
+      class="tag-filter-chip is-active"
+      type="button"
+      data-tag-filter-all
+      aria-pressed="true">
+      <span class="tag-filter-chip-name"><%= filterAll %></span>
+    </button>
+    <% tagList.forEach(function(tag) { %>
+    <button
+      class="tag-filter-chip"
+      type="button"
+      data-tag="<%= tag.name %>"
+      aria-pressed="false">
+      <span class="tag-filter-chip-name"><%= tag.name %></span>
+      <span class="tag-filter-chip-count"><%= tag.count %></span>
+    </button>
+    <% }); %>
+  </div>
+</div>
+<% } %>

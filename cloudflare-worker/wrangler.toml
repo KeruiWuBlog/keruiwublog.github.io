@@ -1,0 +1,10 @@
+name = "blog-counter"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# KV namespace for storing counts. Create it with:
+#   npx wrangler kv namespace create COUNTER
+# then paste the printed id below.
+[[kv_namespaces]]
+binding = "COUNTER"
+id = "d75274e453c84576a3c51f432057d164"

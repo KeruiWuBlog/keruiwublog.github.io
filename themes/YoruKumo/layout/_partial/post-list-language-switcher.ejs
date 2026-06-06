@@ -1,0 +1,33 @@
+<%
+  var switcher = theme.language_switcher || {};
+  var order = switcher.order || ['en', 'zh-CN', 'zh'];
+  var labels = switcher.labels || {};
+  var seenLanguages = {};
+  var options = [];
+
+  order.forEach(function(code) {
+    var normalized = String(code).toLowerCase();
+    if (!seenLanguages[normalized]) {
+      seenLanguages[normalized] = true;
+      options.push({
+        code: normalized,
+        label: labels[code] || labels[normalized] || code
+      });
+    }
+  });
+%>
+
+<% if (options.length > 1) { %>
+<div class="post-list-language-switcher" aria-label="Post list language">
+  <div class="post-list-language-options">
+    <% options.forEach(function(option) { %>
+    <button
+      class="post-list-language-option"
+      type="button"
+      data-site-language-option="<%- option.code %>">
+      <%= option.label %>
+    </button>
+    <% }); %>
+  </div>
+</div>
+<% } %>
